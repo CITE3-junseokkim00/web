@@ -9,6 +9,9 @@ kw_model = KeyBERT(model=sentence_model)
 okt = Okt()
 
 
+def NounExtraction(document):
+    return list(set(okt.nouns(document)))
+
 def keywordExtraction(document):
     keywords = kw_model.extract_keywords(
         docs=document, keyphrase_ngram_range=(1, 1), stop_words=None, top_n=5

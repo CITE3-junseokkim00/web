@@ -4,8 +4,9 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 
 import Generation
-# import KeyphraseExtraction
+import KeyphraseExtraction
 import Summarization
+import Distractor
 
 app = Flask(__name__)
 CORS(app)
@@ -24,11 +25,11 @@ def summary(text: str):
                                 'options': {"wait_for_model": True}})
 
 
-# @app.route("/api/extract/<text>", methods=["GET"])
-# def extract(text: str):
-#     response = KeyphraseExtraction.keywordExtraction(text)
-#     json_obj = {"response": response}
-#     return jsonify(json_obj)
+@app.route("/api/extract/<text>", methods=["GET"])
+def extract(text: str):
+    response = KeyphraseExtraction.keywordExtraction(text)
+    json_obj = {"response": response}
+    return jsonify(json_obj)
 
 
 @app.route("/api/generation/<text>/<answer>", methods=["GET"])
@@ -36,6 +37,12 @@ def generate(text: str, answer: str):
     return Generation.query({"inputs": text + "<unused0>" + answer,
                              'options': {"wait_for_model": True}})
 
+@app.route("/api/distractors/<text>/<keyword>", methods=["GET"])
+def distractor(text: str, keyword: str):
+    response = Distractor.get_distractor(text=text, keyword=keyword)
+    json_obj = {"response": response}
+    return jsonify(json_obj)
+
 
 if __name__ == "__main__":
-    app.run(port=8080)
+    app.run(host="0.0.0.0",port=8080)
