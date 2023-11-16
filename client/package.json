@@ -11,7 +11,10 @@
   "dependencies": {
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.2"
+    "next": "14.0.2",
+    "react-countup": "^4.3.3",
+    "react-visibility-sensor": "^5.1.1",
+    "pdfjs-dist":"*"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
