@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
     "next": "14.0.2",
+    "pdfjs": "^2.5.2",
+    "pdfjs-dist": "^2.6.347",
+    "react": "^18",
     "react-countup": "^4.3.3",
-    "react-visibility-sensor": "^5.1.1",
-    "pdfjs-dist":"*"
+    "react-dom": "^18",
+    "react-router-dom": "^6.19.0",
+    "react-visibility-sensor": "^5.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",

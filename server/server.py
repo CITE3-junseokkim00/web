@@ -7,10 +7,18 @@ import Generation
 import KeyphraseExtraction
 import Summarization
 import Distractor
+from makeChunk import doc2Chunk
 
 app = Flask(__name__)
 CORS(app)
 
+
+
+@app.route("/api/makeChunk/<text>", methods=["GET"])
+def makeChunk(text: str):
+    response = doc2Chunk(text)
+    json_obj = {"response": response}
+    return jsonify(json_obj)
 
 
 @app.route("/api", methods=["GET"])

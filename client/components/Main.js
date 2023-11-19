@@ -1,5 +1,8 @@
 import CountUp from "react-countup";
+import { Link } from "react-router-dom";
+
 import VisibilitySensor from "react-visibility-sensor";
+
 
 export default function Main() {
   return (
@@ -16,28 +19,11 @@ export default function Main() {
             Upload your pdf files and receive Multiple choice Questions
           </p>
           <br></br>
-
-          <h2 class="text-white">Try it right now!</h2>
+          <h2 class="mx-auto  text-xl font-normal leading-relaxed text-white dark:text-gray-300 lg:w-2/3">Try it right now!</h2>
           <br></br>
-        {/* add pdf files in this place */}
-          
-
-          <div class="flex items-center justify-center w-full">
-            <label for="dropzone-file" class="flex flex-col items-center justify-center w-7/12 h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-              <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                </svg>
-                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                <p class="text-xs text-gray-500 dark:text-gray-400">Only Pdf file</p>
-              </div>
-              <input id="dropzone-file" type="file" class="hidden" />
-            </label>
-          </div>
-
-
-
-
+          <a class="mr-6" href="/tryit">
+            <button type='button' class="px-4 py-2 mt-2 text-sm font-semibold dark:bg-blue-600 transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-900 md:mt-0 md:ml-4 hover:bg-gray-500 focus:text-gray-900 bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Try it</button>
+          </a>
         </div>
       </div>
       {/* <div class="container flex flex-col items-center justify-center py-8 mx-auto rounded-lg md:p-1 p-3">
