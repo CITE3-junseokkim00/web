@@ -8,6 +8,7 @@ import KeyphraseExtraction
 import Summarization
 import Distractor
 from makeChunk import doc2Chunk
+from collections import defaultdict
 
 app = Flask(__name__)
 CORS(app)
@@ -50,6 +51,28 @@ def distractor(text: str, keyword: str):
     response = Distractor.get_distractor(text=text, keyword=keyword)
     json_obj = {"response": response}
     return jsonify(json_obj)
+
+@app.route("/api/makeQuiz/<text>", methods=["GET"])
+def makeQuiz(text: str):
+    questions = []
+    summarize_response = Summarization.query({"inputs": text,
+                                "parameters": {"min_length": 200, "max_length": 256, "repetition_penalty": 2.0},
+                                'options': {"wait_for_model": True}})
+    extract_response = KeyphraseExtraction.keywordExtraction(summarize_response[0]['summary_text'])
+    
+    for keyword in extract_response:
+        response=defaultdict(list)
+        response['answer'] = keyword
+        generate_question = Generation.query({"inputs": summarize_response[0]['summary_text'] + "<unused0>" + keyword,
+                             'options': {"wait_for_model": True}})
+        response['question'] = generate_question[0]['generated_text']
+        distractor = Distractor.get_distractor(text=text, keyword=keyword)
+        response['distractor'] = distractor
+        questions.append(response)
+    json_obj = {"response": questions}
+    return jsonify(json_obj)
+
+
 
 
 if __name__ == "__main__":
