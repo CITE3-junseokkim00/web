@@ -34,7 +34,7 @@ function tryit() {
             // <li key={key} class='text-white'>
             //   {/* <Quiz question={item.answer} index={key}/> */}
             // </li>
-            console.log(key)
+            console.log(item)
           ))}
         </ul>
       )}

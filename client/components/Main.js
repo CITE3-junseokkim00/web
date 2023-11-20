@@ -21,7 +21,7 @@ export default function Main() {
           <br></br>
           <h2 class="mx-auto  text-xl font-normal leading-relaxed text-white dark:text-gray-300 lg:w-2/3">Try it right now!</h2>
           <br></br>
-          <a class="mr-6" href="/tryit">
+          <a class="mr-6 flex justify-center items-center" href="/tryit">
             <button type='button' class="px-4 py-2 mt-2 text-sm font-semibold bg-white dark:bg-white transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-900 md:mt-0 md:ml-4 hover:bg-gray-500 focus:text-gray-900 bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Try it</button>
           </a>
         </div>
