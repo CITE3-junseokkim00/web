@@ -1,14 +1,26 @@
 import React from 'react'
+import { distractor } from '@/components/api';
 
-function Quiz(question, index) {
+export default function Quiz(item) {
+  const data = item.item;
+  console.log(data)
   return (
-    <div>
-        <h1 class=''>{index+1}: {question}</h1>
-        {/* {distractor.map((data, key) => {
-            <input type='radio' name={key} value={data}>{data}</input>
-        })}; */}
-    </div>
-  )
-}
+    <div class=' flex flex-col p-5 justify-center bg-gray-700 rounded-md'>
 
-export default Quiz
+        <h1 class='dark:text-white'>{data.question}</h1>
+        <fieldset class='text-white'>
+        <ul class='flex-col'>
+        <legend>Select the Correct Answer:</legend>
+          {data.distractor.map((data, key) => (
+            
+              <div>
+                <input type='radio' id={data} name={key} value={data} class='dark:text-white'/>
+                <label for={data}> {data} </label>
+              </div>
+            
+          ))}
+        </ul>
+        </fieldset>
+    </div>
+  );
+}
