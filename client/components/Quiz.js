@@ -7,17 +7,14 @@ export default function Quiz(item) {
   return (
     <div class='flex flex-col p-5 justify-center bg-gray-700 rounded-md'>
 
-        <h1 class='dark:text-white'>{data.question}</h1>
+        <h1 class='dark:text-white pb-5'>{data.index+1}. {data.question}</h1>
         <fieldset class='text-white'>
         <ul class='flex-col'>
-        <legend>Select the Correct Answer:</legend>
           {data.distractor.map((data, key) => (
-            
-              <div>
-                <input type='radio' id={data} name={key} value={data} class='dark:text-white'/>
-                <label for={data}> {data} </label>
-              </div>
-            
+              <li>
+                <input type='radio' id={data} name={data.index+1} value={data} class='dark:text-white'/>
+                <label for={data}> {key+1}) {data} </label>
+              </li>
           ))}
         </ul>
         </fieldset>
