@@ -57,7 +57,7 @@ export const distractor = (text, answer, func) => {
 
 export const makeQuiz = (text, func) => {
     console.log(text)
-    fetch(`http://127.0.0.1:8081/api/makeQuiz/${text}`).then(
+    fetch(`http://127.0.0.1:8080/api/makeQuiz/${text}`).then(
         (response) => response.json()
     ).then(
         (data) => {

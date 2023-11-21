@@ -5,7 +5,7 @@ export default function Quiz(item) {
   const data = item.item;
   console.log(data)
   return (
-    <div class=' flex flex-col p-5 justify-center bg-gray-700 rounded-md'>
+    <div class='flex flex-col p-5 justify-center bg-gray-700 rounded-md'>
 
         <h1 class='dark:text-white'>{data.question}</h1>
         <fieldset class='text-white'>

@@ -1,48 +1,37 @@
 import React, { useState } from 'react'
 // import {pdfjs, Document, Page} from 'react-pdf';
-import pdfjsLib from 'pdfjs-dist/build/pdf';
+import * as pdfjs from 'pdfjs-dist'
+import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry'
 import 'pdfjs-dist/web/pdf_viewer.css';
 
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/build/pdf.worker.min.js`;
 
 
-function PdfReader(visible) {
-    const [text, setText] = useState('');
 
-    const handleFileChange = (event) => {
+function PdfReader(func) {
+    const handleFileChange = async (event) => {
+        
         const file = event.target.files[0];
-
         if (file) {
-            // Create a file reader
-            const reader = new FileReader();
-            reader.readAsArrayBuffer(file);
-            
-            // Read the PDF file as an ArrayBuffer
-            // Handle the file reading completion
-            reader.onload = async () => {
-                // Load the PDF document
-                
-                const loadingTask = pdfjsLib.getDocument(reader.result);
-                console.log("loading...")
-                const pdfDocument = await loadingTask.promise;
+            const dataUrl = URL.createObjectURL(file);
+            const loadingTask = pdfjs.getDocument(dataUrl);
+            const pdfDocument = await loadingTask.promise;
 
-                // Extract text from each page
-                console.log('extracting...')
-                let extractedText = '';
-                for (let i = 1; i <= pdfDocument.numPages; i++) {
-                    const page = await pdfDocument.getPage(i);
-                    const pageText = await page.getText();
-                    extractedText += pageText;
+            let fullText = '';
+            for (let pageNumber = 1; pageNumber <= pdfDocument.numPages; pageNumber++) {
+                const page = await pdfDocument.getPage(pageNumber);
+                // console.log(page)
+                const pageText = await page.getTextContent();
+                for(let j = 0; j < pageText.items.length; j++) {
+                    fullText+=pageText.items[j].str
                 }
-
-                // Set the extracted text in the state
-                console.log(extractedText)
-                setText(extractedText);
-            };
+            }
+            func.func(fullText);
         }
-    };
+    }
 
     return (
-        <form class={visible ? '' :'hidden'}>
+        <form>
             <div class="flex flex-col items-center justify-center w-full mx-auto">
                 <label for="dropzone-file" class="flex flex-col items-center justify-center w-6/12 h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
                     <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -55,11 +44,6 @@ function PdfReader(visible) {
                     <input id="dropzone-file" type="file" class="hidden" required onChange={handleFileChange} />
                 </label>
                 <br></br>
-                {/* <div>
-                    <h2 class="text-white">Extracted Text:</h2>
-                    <pre class="">{text}</pre>
-                </div> */}
-                {/* <button class="dark:border-white px-4 py-2 mt-2 text-sm font-semibold text-white bg-blue-600 transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-300 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Try it!</button> */}
             </div>
         </form>
     )

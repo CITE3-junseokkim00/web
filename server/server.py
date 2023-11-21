@@ -59,7 +59,7 @@ def makeQuiz(text: str):
                                 "parameters": {"min_length": 200, "max_length": 256, "repetition_penalty": 2.0},
                                 'options': {"wait_for_model": True}})
     extract_response = KeyphraseExtraction.keywordExtraction(summarize_response[0]['summary_text'])
-    
+    idx=0
     for keyword in extract_response:
         response=defaultdict(list)
         response['answer'] = keyword
@@ -68,7 +68,9 @@ def makeQuiz(text: str):
         response['question'] = generate_question[0]['generated_text']
         distractor = Distractor.get_distractor(text=text, keyword=keyword)
         response['distractor'] = distractor
+        response['index'] = idx
         questions.append(response)
+        idx+=1
     json_obj = {"response": questions}
     return jsonify(json_obj)
 
