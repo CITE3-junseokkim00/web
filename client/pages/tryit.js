@@ -6,6 +6,7 @@ import { makeQuiz, summarize, keyExtraction, generation, distractor } from '@/co
 import Quiz from '@/components/Quiz'
 
 
+
 function tryit() {
 
 
@@ -27,13 +28,24 @@ function tryit() {
         <br></br>
       </div>
       <div class='flex flex-row justify-center items-center'>
-        <button type='button' onClick={() => { setisReady(!isReady); makeQuiz(text, setQuizzes);}} class="px-4 py-2 mt-2 text-sm font-semibold bg-white dark:bg-white transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-900 md:mt-0 md:ml-4 hover:bg-gray-500 focus:text-gray-900 bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Try it(End 2 End)</button>
-        <button type='button' onClick={() => setisReady(!isReady)} class="px-4 py-2 mt-2 text-sm font-semibold bg-white dark:bg-white transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-900 md:mt-0 md:ml-4 hover:bg-gray-500 focus:text-gray-900 bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Try it(manually)</button>
+        {isReady &&
+        <>
+          <button type='button' onClick={() => { setisReady(!isReady); makeQuiz(text, setQuizzes);}} class="px-4 py-2 mt-2 text-sm font-semibold bg-white dark:bg-white transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-900 md:mt-0 md:ml-4 hover:bg-gray-500 focus:text-gray-900 bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Try it</button>
+          {/* <button type='button' onClick={() => setisReady(!isReady)} class="px-4 py-2 mt-2 text-sm font-semibold bg-white dark:bg-white transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-900 md:mt-0 md:ml-4 hover:bg-gray-500 focus:text-gray-900 bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Try it(manually)</button> */}
+        </> 
+        }
+        {
+          !isReady &&
+          <>
+            <button type='button' onClick={() => { setisReady(!isReady);}} class="px-4 py-2 mt-2 text-sm font-semibold bg-white dark:bg-white transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-900 md:mt-0 md:ml-4 hover:bg-gray-500 focus:text-gray-900 bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Try it again</button>
+          </> 
+        }
+       
       </div>
       {/* <button type='button' onClick={() => console.log(Quizzes)} class="px-4 py-2 mt-2 text-sm font-semibold bg-white dark:bg-white transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-900 md:mt-0 md:ml-4 hover:bg-gray-500 focus:text-gray-900 bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">check Quizzes</button> */}
       <div class='flex-col flex justify-center items-center'>
         <div class='w-1/2 flex flex-col justify-center items-center p-5'>
-          <form onSubmit={() => console.log("Submit")}>
+          <form class='flex flex-col justify-center' onSubmit={() => console.log("Submit")}>
             {Quizzes && (
               <ul class='w-full flex flex-col gap-5'>
                 {Quizzes['response'].map((item, key) => (
@@ -43,7 +55,7 @@ function tryit() {
             )}
             <br></br>
             {Quizzes && (
-              <button type='submit' onClick={() => console.log("done")} class="px-4 py-2 mt-2 text-sm font-semibold bg-white dark:bg-white transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-900 md:mt-0 md:ml-4 hover:bg-gray-500 focus:text-gray-900 bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">submit!</button>
+              <button type='submit' onClick={() => console.log("done")} class="px-4 py-2 mt-2 text-sm font-semibold bg-white dark:bg-white transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-900 md:mt-0x hover:bg-gray-500 focus:text-gray-900 bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">submit!</button>
             )}
           </form>
         </div>
