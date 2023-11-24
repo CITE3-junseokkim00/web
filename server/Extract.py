@@ -26,4 +26,9 @@ def extract(document, model_name, n_words):
         messages = messages
     )
     
+    #Pre-processing
+    response = response['choices'][0]['message']['content']
+    response = response[1:-1].split(',')
+    response = [word.strip() for word in response]
+
     return response
