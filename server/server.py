@@ -39,7 +39,7 @@ def summary(text: str):
 def extract(text: str):
     # response = KeyphraseExtraction.keywordExtraction(text)
     response = extract(document=text, model_name="gpt-3.5-turbo-0613", n_words=10)
-    json_obj = {"response": response['choices'][0]['message']['content']}
+    json_obj = {"response": response}
     return jsonify(json_obj)
 
 
