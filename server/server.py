@@ -5,6 +5,7 @@ from flask_cors import CORS
 
 import Generation
 import KeyphraseExtraction
+from Extract import extract
 import Summarization
 import Distractor
 from makeChunk import doc2Chunk
@@ -36,8 +37,9 @@ def summary(text: str):
 
 @app.route("/api/extract/<text>", methods=["GET"])
 def extract(text: str):
-    response = KeyphraseExtraction.keywordExtraction(text)
-    json_obj = {"response": response}
+    # response = KeyphraseExtraction.keywordExtraction(text)
+    response = extract(document=text, model_name="gpt-3.5-turbo-0613", n_words=10)
+    json_obj = {"response": response['choices'][0]['message']['content']}
     return jsonify(json_obj)
 
 
