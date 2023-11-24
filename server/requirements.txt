@@ -2,3 +2,4 @@ Flask
 flask-cors
 keybert
 langchain
+openai==0.28

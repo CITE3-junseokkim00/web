@@ -13,6 +13,6 @@ def get_distractor(text, keyword):
             sim_score = 0
         score.append((noun, sim_score))
     score = sorted(score, key = lambda x: (-x[1], x[0]))
-    score = [value[0] for value in score[0:5]]
-    random.shuffle(score)
+    score = [value[0] for value in score[0:4]]
+    # random.shuffle(score)
     return score

@@ -8,6 +8,7 @@ import KeyphraseExtraction
 import Extract
 import Summarization
 import Distractor
+import random
 from makeChunk import doc2Chunk
 from collections import defaultdict
 
@@ -60,8 +61,11 @@ def makeQuiz(text: str):
     summarize_response = Summarization.query({"inputs": text,
                                 "parameters": {"min_length": 200, "max_length": 256, "repetition_penalty": 2.0},
                                 'options': {"wait_for_model": True}})
-    print(summarize_response[0]['summary_text'])
+
     extract_response = Extract.extract(document=summarize_response[0]['summary_text'], model_name="gpt-3.5-turbo-0613", n_words=10)
+    if len(extract_response) > 10:
+        random.shuffle(extract_response)
+        extract_response = extract_response[:10]
     idx=0
     for keyword in extract_response:
         response=defaultdict(list)
@@ -73,6 +77,8 @@ def makeQuiz(text: str):
             distractor = Distractor.get_distractor(text=text, keyword=keyword)
         except:
             distractor = ["Distractor failed"]
+        distractor.append(keyword)
+        random.shuffle(distractor)
         response['distractor'] = distractor
         response['index'] = idx
         questions.append(response)
