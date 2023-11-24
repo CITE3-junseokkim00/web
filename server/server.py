@@ -5,9 +5,10 @@ from flask_cors import CORS
 
 import Generation
 import KeyphraseExtraction
-from Extract import extract
+import Extract
 import Summarization
 import Distractor
+import random
 from makeChunk import doc2Chunk
 from collections import defaultdict
 
@@ -38,7 +39,7 @@ def summary(text: str):
 @app.route("/api/extract/<text>", methods=["GET"])
 def extract(text: str):
     # response = KeyphraseExtraction.keywordExtraction(text)
-    response = extract(document=text, model_name="gpt-3.5-turbo-0613", n_words=10)
+    response = Extract.extract(document=text, model_name="gpt-3.5-turbo-0613", n_words=10)
     json_obj = {"response": response}
     return jsonify(json_obj)
 
@@ -60,7 +61,11 @@ def makeQuiz(text: str):
     summarize_response = Summarization.query({"inputs": text,
                                 "parameters": {"min_length": 200, "max_length": 256, "repetition_penalty": 2.0},
                                 'options': {"wait_for_model": True}})
-    extract_response = KeyphraseExtraction.keywordExtraction(summarize_response[0]['summary_text'])
+
+    extract_response = Extract.extract(document=summarize_response[0]['summary_text'], model_name="gpt-3.5-turbo-0613", n_words=10)
+    if len(extract_response) > 10:
+        random.shuffle(extract_response)
+        extract_response = extract_response[:10]
     idx=0
     for keyword in extract_response:
         response=defaultdict(list)
@@ -68,7 +73,12 @@ def makeQuiz(text: str):
         generate_question = Generation.query({"inputs": summarize_response[0]['summary_text'] + "<unused0>" + keyword,
                              'options': {"wait_for_model": True}})
         response['question'] = generate_question[0]['generated_text']
-        distractor = Distractor.get_distractor(text=text, keyword=keyword)
+        try:
+            distractor = Distractor.get_distractor(text=text, keyword=keyword)
+        except:
+            distractor = ["Distractor failed"]
+        distractor.append(keyword)
+        random.shuffle(distractor)
         response['distractor'] = distractor
         response['index'] = idx
         questions.append(response)
