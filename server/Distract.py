@@ -27,4 +27,4 @@ def distract(question, answer, model_name):
     response = response[1:-1].split(',')
     response = [word.strip() for word in response]
 
-    return response
+    return response[0:4]

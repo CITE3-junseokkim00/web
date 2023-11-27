@@ -126,7 +126,7 @@ export default function Main() {
                 </p>
               </div>
             </div>
-            <div class="flex flex-col mb-10 lg:items-start items-center">
+            {/* <div class="flex flex-col mb-10 lg:items-start items-center">
               <div class="flex-grow">
                 <h2 class="text-white text-2xl title-font font-medium mb-3">
                   Without using ChatGpt-3
@@ -135,7 +135,7 @@ export default function Main() {
                   This project does not rely on using ChatGpt-3 api
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
