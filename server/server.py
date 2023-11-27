@@ -7,7 +7,8 @@ import Generation
 import KeyphraseExtraction
 import Extract
 import Summarization
-import Distractor
+# import Distractor
+from Distract import distract
 import random
 from makeChunk import doc2Chunk
 from collections import defaultdict
@@ -51,7 +52,8 @@ def generate(text: str, answer: str):
 
 @app.route("/api/distractors/<text>/<keyword>", methods=["GET"])
 def distractor(text: str, keyword: str):
-    response = Distractor.get_distractor(text=text, keyword=keyword)
+    # response = Distractor.get_distractor(text=text, keyword=keyword)
+    response = distract(question=text, answer=keyword, model_name="gpt-3.5-turbo-0613")
     json_obj = {"response": response}
     return jsonify(json_obj)
 
@@ -74,7 +76,8 @@ def makeQuiz(text: str):
                              'options': {"wait_for_model": True}})
         response['question'] = generate_question[0]['generated_text']
         try:
-            distractor = Distractor.get_distractor(text=text, keyword=keyword)
+            distractor = distract(question=text, answer=keyword, model_name="gpt-3.5-turbo-0613")
+            # distractor = Distractor.get_distractor(text=text, keyword=keyword)
         except:
             distractor = ["Distractor failed"]
         distractor.append(keyword)

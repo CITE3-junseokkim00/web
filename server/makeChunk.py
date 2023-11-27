@@ -1,5 +1,6 @@
 from langchain.text_splitter import CharacterTextSplitter
 
+
 def doc2Chunk(text):
     text_splitter = CharacterTextSplitter(
         separator="\n",
