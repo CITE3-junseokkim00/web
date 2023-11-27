@@ -1,5 +1,5 @@
 export const makeChunk = (text) => {
-    fetch(`http://16.171.244.243/api/makeChunk/${text.text}`).then(
+    fetch(`http://16.171.244.243:80/api/makeChunk/${text.text}`).then(
         (response) => response.json()
     ).then(
         (data) => {
@@ -10,7 +10,7 @@ export const makeChunk = (text) => {
 }
 export const summarize = (text, func) => {
     console.log(text)
-    fetch(`http://16.171.244.243/api/summarization/${text.text}`).then(
+    fetch(`http://16.171.244.243:80/api/summarization/${text.text}`).then(
         (response) => response.json()
     ).then(
         (data) => {
@@ -22,7 +22,7 @@ export const summarize = (text, func) => {
 
 export const keyExtraction = (text, func) => {
     console.log(text)
-    fetch(`http://16.171.244.243/api/extract/${text.text}`).then(
+    fetch(`http://16.171.244.243:80/api/extract/${text.text}`).then(
         (response) => response.json()
     ).then(
         (data) => {
@@ -33,7 +33,7 @@ export const keyExtraction = (text, func) => {
 }
 
 export const generation = (text, answer, func) => {
-    fetch(`http://16.171.244.243/api/generation/${text.text}/${answer.answer}`).then(
+    fetch(`http://16.171.244.243:80/api/generation/${text.text}/${answer.answer}`).then(
         (response) => response.json()
     ).then(
         (data) => {
@@ -45,7 +45,7 @@ export const generation = (text, answer, func) => {
 
 
 export const distractor = (text, answer, func) => {
-    fetch(`http://16.171.244.243/api/distractors/${text.text}/${answer.answer}`).then(
+    fetch(`http://16.171.244.243:80/api/distractors/${text.text}/${answer.answer}`).then(
         (response) => response.json()
     ).then(
         (data) => {
@@ -57,7 +57,7 @@ export const distractor = (text, answer, func) => {
 
 export const makeQuiz = (text, func) => {
     console.log(text)
-    fetch(`http://16.171.244.243/api/makeQuiz/${text}`).then(
+    fetch(`http://16.171.244.243:80/api/makeQuiz/${text}`).then(
         (response) => response.json()
     ).then(
         (data) => {
