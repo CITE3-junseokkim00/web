@@ -16,7 +16,6 @@ function tryit() {
   const [Quizzes, setQuizzes] = useState(null);
   const [question, setQuestion] = useState('')
   const [answer, setAnswer] = useState('')
-  const [distractor, setDistractor] = useState([])
 
   return (
     <div class='min-h-screen bg-black'>
