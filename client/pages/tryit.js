@@ -14,8 +14,9 @@ function tryit() {
   const [isReady, setisReady] = useState(true);
   const [isLoading, setisLoading] = useState(false);
   const [Quizzes, setQuizzes] = useState(null);
-  const [question, setQuestion] = useState('')
+  const [myAnswer, setmyAnswer] = useState([]);
   const [answer, setAnswer] = useState('')
+
 
   return (
     <div class='min-h-screen bg-black'>
@@ -29,7 +30,7 @@ function tryit() {
       <div class='flex flex-row justify-center items-center'>
         {isReady &&
         <>
-          <button type='button' onClick={() => { setisReady(!isReady); makeQuiz(text, setQuizzes);}} class="px-4 py-2 mt-2 text-sm font-semibold bg-white dark:bg-white transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-900 md:mt-0 md:ml-4 hover:bg-gray-500 focus:text-gray-900 bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Try it</button>
+          <button type='button' onClick={() => { setisReady(!isReady);  makeQuiz(text, setQuizzes, setAnswer, setmyAnswer);}} class="px-4 py-2 mt-2 text-sm font-semibold bg-white dark:bg-white transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-900 md:mt-0 md:ml-4 hover:bg-gray-500 focus:text-gray-900 bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Try it</button>
           {/* <button type='button' onClick={() => setisReady(!isReady)} class="px-4 py-2 mt-2 text-sm font-semibold bg-white dark:bg-white transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-900 md:mt-0 md:ml-4 hover:bg-gray-500 focus:text-gray-900 bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Try it(manually)</button> */}
         </> 
         }
@@ -48,7 +49,7 @@ function tryit() {
             {Quizzes && (
               <ul class='w-full flex flex-col gap-5'>
                 {Quizzes['response'].map((item, key) => (
-                  <Quiz key={key} item={item}/>
+                  <Quiz key={key} item={item} func={setmyAnswer} myAnswer={myAnswer}/>
                 ))}
               </ul>
             )}

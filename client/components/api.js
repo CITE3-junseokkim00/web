@@ -55,14 +55,26 @@ export const distractor = (text, answer, func) => {
     )
 }
 
-export const makeQuiz = (text, func) => {
+export const makeQuiz = async (text, func, func2, func3) => {
     console.log(text)
+    let Answer = []
+    let myAnswer = []
     fetch(`http://16.171.244.243:80/api/makeQuiz/${text}`).then(
         (response) => response.json()
     ).then(
         (data) => {
             console.log(data)
             func(data)
+            data['response'].map((item, key) => {
+                console.log(item['answer']);
+                Answer.push(item['answer']);
+                myAnswer.push('');
+            })
+            func2(Answer);
+            func3(myAnswer);
+            console.log(Answer);
+            console.log(myAnswer);
+            
         }
     )
 }

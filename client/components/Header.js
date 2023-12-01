@@ -42,8 +42,7 @@ export default function Header() {
           <a class="mr-6 hover:text-white" href="/">Home</a>
           <a class="mr-6 hover:text-white" href="/sandbox">Sandbox</a>
           <a class="mr-6 hover:text-white" href="/tryit">Try it</a>
-          
-          <a class="mr-6 hover:text-white" href="/404">404</a>
+          <a class="mr-6 hover:text-white" href="https://zealous-dichondra-a4a.notion.site/How-did-I-built-it-4f0d137a361541508fbcaebd334a6ef4?pvs=4">How did I built it?</a>
         </nav>
         </div>
       </div>
