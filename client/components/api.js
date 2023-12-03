@@ -48,6 +48,7 @@ export const generation = (text, answer, func) => {
         (response) => response.json()
     ).then(
         (data) => {
+            console.log(data)
             console.log(data['0'].generated_text)
             func(data['0'].generated_text)
         }
@@ -56,7 +57,7 @@ export const generation = (text, answer, func) => {
 
 
 export const distractor = (text, answer, func) => {
-    fetch(`https://doc2mcq-web-server.vercel.app//api/distractors/${text.text}/${answer.answer}`).then(
+    fetch(`https://doc2mcq-web-server.vercel.app/api/distractors/${text.text}/${answer.answer}`).then(
         (response) => response.json()
     ).then(
         (data) => {
