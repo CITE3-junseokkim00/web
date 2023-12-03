@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://16.171.244.243:80",
+  "proxy": "https://doc2mcq-web-server.vercel.app",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
