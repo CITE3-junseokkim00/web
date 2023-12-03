@@ -1,8 +1,7 @@
 import openai
+import os
 
-from apikey import OPENAI_KEY
-
-openai.api_key = OPENAI_KEY
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 def extract(document, model_name, n_words):
     messages = [
