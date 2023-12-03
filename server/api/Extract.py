@@ -3,7 +3,7 @@ import os
 
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
-def extract(document, model_name, n_words):
+def Extract_extract(document, model_name, n_words):
     messages = [
         {"role": "system", "content": """너는 객관식 문제를 출제하는 선생님이야. 주어진 지문에서 키워드를 뽑아줘. 다음은 지문에서 키워드를 뽑아낸 예시야:
          

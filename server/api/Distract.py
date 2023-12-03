@@ -4,7 +4,7 @@ import os
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 
-def distract(question, answer, model_name):
+def Distract_distract(question, answer, model_name):
     messages = [
         {
             "role": "system",

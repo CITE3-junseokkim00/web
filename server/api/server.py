@@ -1,10 +1,10 @@
 import json
 from flask import Flask, jsonify
 from flask_cors import CORS
-import Generation
-import Extract
-import Summarization
-from Distract import distract
+from Generation import Generation_query
+from Extract import Extract_extract
+from Summarization import Summarize_query
+from Distract import Distract_distract
 import random
 from makeChunk import doc2Chunk
 from collections import defaultdict
@@ -27,7 +27,7 @@ def read_root():
 
 @app.route("/api/summarization/<text>", methods=["GET"])
 def summary(text):
-    return Summarization.query({"inputs": text,
+    return Summarize_query({"inputs": text,
                                 "parameters": {"min_length": 200, "max_length": 256, "repetition_penalty": 2.0},
                                 'options': {"wait_for_model": True}})
 
@@ -35,31 +35,31 @@ def summary(text):
 @app.route("/api/extract/<text>", methods=["GET"])
 def extract(text):
     # response = KeyphraseExtraction.keywordExtraction(text)
-    response = Extract.extract(document=text, model_name="gpt-3.5-turbo-0613", n_words=10)
+    response = Extract_extract(document=text, model_name="gpt-3.5-turbo-0613", n_words=10)
     json_obj = {"response": response}
     return jsonify(json_obj)
 
 
 @app.route("/api/generation/<text>/<answer>", methods=["GET"])
 def generate(text, answer):
-    return Generation.query({"inputs": text + "<unused0>" + answer,
+    return Generation_query({"inputs": text + "<unused0>" + answer,
                              'options': {"wait_for_model": True}})
 
 @app.route("/api/distractors/<text>/<keyword>", methods=["GET"])
 def distractor(text, keyword):
     # response = Distractor.get_distractor(text=text, keyword=keyword)
-    response = distract(question=text, answer=keyword, model_name="gpt-3.5-turbo-0613")
+    response = Distract_distract(question=text, answer=keyword, model_name="gpt-3.5-turbo-0613")
     json_obj = {"response": response}
     return jsonify(json_obj)
 
 @app.route("/api/makeQuiz/<text>", methods=["GET"])
 def makeQuiz(text):
     questions = []
-    summarize_response = Summarization.query({"inputs": text,
+    summarize_response = Summarize_query({"inputs": text,
                                 "parameters": {"min_length": 200, "max_length": 256, "repetition_penalty": 2.0},
                                 'options': {"wait_for_model": True}})
 
-    extract_response = Extract.extract(document=summarize_response[0]['summary_text'], model_name="gpt-3.5-turbo-0613", n_words=10)
+    extract_response = Extract_extract(document=summarize_response[0]['summary_text'], model_name="gpt-3.5-turbo-0613", n_words=10)
     if len(extract_response) > 10:
         random.shuffle(extract_response)
         extract_response = extract_response[:10]
@@ -67,11 +67,11 @@ def makeQuiz(text):
     for keyword in extract_response:
         response=defaultdict(list)
         response['answer'] = keyword
-        generate_question = Generation.query({"inputs": summarize_response[0]['summary_text'] + "<unused0>" + keyword,
+        generate_question = Generation_query({"inputs": summarize_response[0]['summary_text'] + "<unused0>" + keyword,
                              'options': {"wait_for_model": True}})
         response['question'] = generate_question[0]['generated_text']
         try:
-            distractor = distract(question=text, answer=keyword, model_name="gpt-3.5-turbo-0613")
+            distractor = Distract_distract(question=text, answer=keyword, model_name="gpt-3.5-turbo-0613")
             # distractor = Distractor.get_distractor(text=text, keyword=keyword)
         except:
             distractor = ["Distractor failed"]
