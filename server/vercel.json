@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "functions": {
-    "server.py": {
-      "maxDuration": 100
-    }
-  },
   "builds": [
     {
       "src": "server.py",
