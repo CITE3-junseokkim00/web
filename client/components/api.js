@@ -8,6 +8,17 @@ export const makeChunk = (text) => {
         }
     )
 }
+
+export const sayhi = () => {
+    fetch(`https://doc2mcq-web-server.vercel.app/api`).then(
+        (response) => response.json()
+    ).then(
+        (data) => {
+            console.log(data);
+        }
+    )
+}
+
 export const summarize = (text, func) => {
     console.log(text)
     fetch(`https://doc2mcq-web-server.vercel.app/api/summarization/${text.text}`).then(

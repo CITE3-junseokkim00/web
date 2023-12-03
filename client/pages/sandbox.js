@@ -1,7 +1,7 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import React, { useState } from 'react'
-import { makeChunk, summarize, keyExtraction, generation, distractor } from '@/components/api'
+import { sayhi, makeChunk, summarize, keyExtraction, generation, distractor } from '@/components/api'
 
 function sandbox() {
 
@@ -25,6 +25,7 @@ function sandbox() {
             <button type='button' onClick={() => keyExtraction({ text },setExtractResult)} class="px-4 py-2 mt-2 text-sm font-semibold text-white bg-blue-600 transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-300 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">keyword extract!</button>
             <button type='button' onClick={() => generation({ text }, { answer }, setGenerationResult)} class="px-4 py-2 mt-2 text-sm font-semibold text-white bg-blue-600 transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-300 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">generation!</button>
             <button type='button' onClick={() => distractor({ text }, { answer }, setDistractorResult)} class="px-4 py-2 mt-2 text-sm font-semibold text-white bg-blue-600 transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-300 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">Distractor generation!</button>
+            <button type='button' onClick={() => sayhi()} class="px-4 py-2 mt-2 text-sm font-semibold text-white bg-blue-600 transition duration-300 ease-in-out transform bg-transparent rounded-lg dark:text-gray-300 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-100 focus:bg-gray-200 focus:outline-none focus:shadow-outline">sayhi</button>
           </div>
           
           <div class='flex justify-center gap-3 p-3'>
