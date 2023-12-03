@@ -1,13 +1,9 @@
 import json
-
 from flask import Flask, jsonify
 from flask_cors import CORS
-
 import Generation
-# import KeyphraseExtraction
 import Extract
 import Summarization
-# import Distractor
 from Distract import distract
 import random
 from makeChunk import doc2Chunk
@@ -15,7 +11,6 @@ from collections import defaultdict
 
 app = Flask(__name__)
 CORS(app)
-
 
 
 @app.route("/api/makeChunk/<text>", methods=["GET"])
