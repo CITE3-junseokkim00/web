@@ -1,5 +1,5 @@
 import requests
-from utils import API_TOKEN
+from utilities.utils import API_TOKEN
 
 API_URL = "https://api-inference.huggingface.co/models/psyche/KoT5-summarization"
 headers = {"Authorization": "Bearer " + API_TOKEN}

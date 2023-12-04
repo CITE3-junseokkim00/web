@@ -1,12 +1,12 @@
 import json
 from flask import Flask, jsonify
 from flask_cors import CORS
-from utils.Generation import Generation_query
-from utils.Extract import Extract_extract
-from utils.Summarization import Summarize_query
-from utils.Distract import Distract_distract
 import random
-from utils.makeChunk import doc2Chunk
+from utilities.Generation import Generation_query
+from utilities.Extract import Extract_extract
+from utilities.Summarization import Summarize_query
+from utilities.Distract import Distract_distract
+from utilities.makeChunk import doc2Chunk
 from collections import defaultdict
 
 app = Flask(__name__)
