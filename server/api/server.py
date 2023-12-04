@@ -14,11 +14,10 @@ CORS(app)
 
 
 @app.route("/api/makeChunk/<text>", methods=["GET"])
-def makeChunk(text):
+def makeChunk(text: str):
     response = doc2Chunk(text)
     json_obj = {"response": response}
     return jsonify(json_obj)
-
 
 @app.route("/api", methods=["GET"])
 def read_root():
@@ -26,14 +25,14 @@ def read_root():
 
 
 @app.route("/api/summarization/<text>", methods=["GET"])
-def summary(text):
+def summary(text: str):
     return Summarize_query({"inputs": text,
                                 "parameters": {"min_length": 200, "max_length": 256, "repetition_penalty": 2.0},
                                 'options': {"wait_for_model": True}})
 
 
 @app.route("/api/extract/<text>", methods=["GET"])
-def extract(text):
+def extract(text: str):
     # response = KeyphraseExtraction.keywordExtraction(text)
     response = Extract_extract(document=text, model_name="gpt-3.5-turbo-0613", n_words=10)
     json_obj = {"response": response}
@@ -41,24 +40,24 @@ def extract(text):
 
 
 @app.route("/api/generation/<text>/<answer>", methods=["GET"])
-def generate(text, answer):
+def generate(text: str, answer: str):
     return Generation_query({"inputs": text + "<unused0>" + answer,
                              'options': {"wait_for_model": True}})
 
 @app.route("/api/distractors/<text>/<keyword>", methods=["GET"])
-def distractor(text, keyword):
+def distractor(text: str, keyword: str):
     # response = Distractor.get_distractor(text=text, keyword=keyword)
     response = Distract_distract(question=text, answer=keyword, model_name="gpt-3.5-turbo-0613")
     json_obj = {"response": response}
     return jsonify(json_obj)
 
 @app.route("/api/makeQuiz/<text>", methods=["GET"])
-def makeQuiz(text):
+def makeQuiz(text: str):
     questions = []
     summarize_response = Summarize_query({"inputs": text,
                                 "parameters": {"min_length": 200, "max_length": 256, "repetition_penalty": 2.0},
                                 'options': {"wait_for_model": True}})
-
+    print(summarize_response)
     extract_response = Extract_extract(document=summarize_response[0]['summary_text'], model_name="gpt-3.5-turbo-0613", n_words=10)
     if len(extract_response) > 10:
         random.shuffle(extract_response)
