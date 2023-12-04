@@ -1,5 +1,5 @@
 import requests
-from utilities.utils import API_TOKEN
+from utils import API_TOKEN
 
 API_URL = "https://api-inference.huggingface.co/models/junseokkim00/KoBART_Question_Generation"
 headers = {"Authorization": "Bearer " + API_TOKEN}

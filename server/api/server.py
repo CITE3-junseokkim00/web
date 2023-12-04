@@ -2,6 +2,7 @@ import json
 from flask import Flask, jsonify
 from flask_cors import CORS
 import random
+from urllib.parse import unquote
 from utilities.Generation import Generation_query
 from utilities.Extract import Extract_extract
 from utilities.Summarization import Summarize_query
@@ -26,6 +27,8 @@ def read_root():
 
 @app.route("/api/summarization/<text>", methods=["GET"])
 def summary(text: str):
+    text = unquote(text)
+    print(text)
     return Summarize_query({"inputs": text,
                                 "parameters": {"min_length": 200, "max_length": 256, "repetition_penalty": 2.0},
                                 'options': {"wait_for_model": True}})
@@ -41,18 +44,22 @@ def extract(text: str):
 
 @app.route("/api/generation/<text>/<answer>", methods=["GET"])
 def generate(text: str, answer: str):
+    text = unquote(text)
+    answer = unquote(answer)
     return Generation_query({"inputs": text + "<unused0>" + answer,
                              'options': {"wait_for_model": True}})
 
 @app.route("/api/distractors/<text>/<keyword>", methods=["GET"])
 def distractor(text: str, keyword: str):
-    # response = Distractor.get_distractor(text=text, keyword=keyword)
+    text = unquote(text)
+    keyword = unquote(keyword)
     response = Distract_distract(question=text, answer=keyword, model_name="gpt-3.5-turbo-0613")
     json_obj = {"response": response}
     return jsonify(json_obj)
 
 @app.route("/api/makeQuiz/<text>", methods=["GET"])
 def makeQuiz(text: str):
+    text = unquote(text)
     questions = []
     summarize_response = Summarize_query({"inputs": text,
                                 "parameters": {"min_length": 200, "max_length": 256, "repetition_penalty": 2.0},
