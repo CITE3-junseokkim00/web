@@ -74,7 +74,8 @@ def makeQuiz(text: str):
         response=defaultdict(list)
         response['answer'] = keyword
         generate_question = Generation_query({"inputs": summarize_response[0]['summary_text'] + "<unused0>" + keyword,
-                             'options': {"wait_for_model": True}})
+                                              "parameters": {"max_length": 50},
+                                            'options': {"wait_for_model": True}})
         response['question'] = generate_question[0]['generated_text']
         try:
             distractor = Distract_distract(question=text, answer=keyword, model_name="gpt-3.5-turbo-0613")
