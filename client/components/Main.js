@@ -119,10 +119,10 @@ export default function Main() {
             <div class="flex flex-col mb-10 lg:items-start items-center">
               <div class="flex-grow">
                 <h2 class="text-white text-2xl title-font font-medium mb-3">
-                  Fast
+                  Based on Korean Language
                 </h2>
                 <p class="leading-relaxed text-lg">
-                  The fastest websites you can get.
+                  The following pipeline uses various models and all of them are focused on a single langauge which is Korean
                 </p>
               </div>
             </div>
@@ -143,7 +143,7 @@ export default function Main() {
         <div class="container px-5 mx-auto">
           <div class="text-center mb-20">
             <h2 class="sm:text-5xl font-medium title-font text-white mb-4">
-              Our Team
+              Acknowledgements
             </h2>
             <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">
               Thanks to professors and mentor who supported my project
@@ -155,18 +155,13 @@ export default function Main() {
               <div class="flex flex-wrap -m-4">
                 <div class="p-4 lg:w-1/4 md:w-1/2">
                   <div class="h-full flex flex-col items-center text-center">
-                    <img
-                      alt="team"
-                      class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
-                      src="./images/placeholder.png"
-                    ></img>
                     <div class="w-full">
                       <h2 class="title-font font-medium text-lg text-white">
                         Junseok Kim
                       </h2>
                       <h3 class="text-gray-500 mb-3">UnderGraduate Student</h3>
                       <p class="mb-4">
-                        Junseok Kim is in charge of the project
+                        Junseok Kim is in charge of the project, fully implemented by himself :)
                       </p>
                       <span class="inline-flex">
                         <a class="text-gray-500">
@@ -211,19 +206,13 @@ export default function Main() {
                 </div>
                 <div class="p-4 lg:w-1/4 md:w-1/2">
                   <div class="h-full flex flex-col items-center text-center">
-                    <img
-                      alt="team"
-                      class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
-                      src="./images/placeholder.png"
-                    ></img>
                     <div class="w-full">
                       <h2 class="title-font font-medium text-lg text-white">
-                        Chris
+                        Professor Gary Geunbae Lee
                       </h2>
-                      <h3 class="text-gray-500 mb-3">Web Developer</h3>
+                      <h3 class="text-gray-500 mb-3">Professor</h3>
                       <p class="mb-4">
-                        Chris is part of our front-end team providing amazing
-                        websites.
+                        Professor Gary Geunbae Lee is my technical advisor for the follwoing project, and gave me several advice about the pipeline
                       </p>
                       <span class="inline-flex">
                         <a class="text-gray-500">
@@ -268,19 +257,13 @@ export default function Main() {
                 </div>
                 <div class="p-4 lg:w-1/4 md:w-1/2">
                   <div class="h-full flex flex-col items-center text-center">
-                    <img
-                      alt="team"
-                      class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
-                      src="./images/placeholder.png"
-                    ></img>
                     <div class="w-full">
                       <h2 class="title-font font-medium text-lg text-white">
-                        Chris
+                        Professor Young Joo Ahn
                       </h2>
-                      <h3 class="text-gray-500 mb-3">Web Developer</h3>
+                      <h3 class="text-gray-500 mb-3">Professor</h3>
                       <p class="mb-4">
-                        Chris is part of our front-end team providing amazing
-                        websites.
+                        Professor Ahn taught It Convergence Comprehensive Design 3. He helped the project via giving helpful advices for the whole semester
                       </p>
                       <span class="inline-flex">
                         <a class="text-gray-500">
@@ -325,19 +308,13 @@ export default function Main() {
                 </div>
                 <div class="p-4 lg:w-1/4 md:w-1/2">
                   <div class="h-full flex flex-col items-center text-center">
-                    <img
-                      alt="team"
-                      class="flex-shrink-0 rounded-lg w-full h-56 object-cover object-center mb-4"
-                      src="./images/placeholder.png"
-                    ></img>
                     <div class="w-full">
                       <h2 class="title-font font-medium text-lg text-white">
-                        Chris
+                        Professor Hyung Ham Kim
                       </h2>
-                      <h3 class="text-gray-500 mb-3">Web Developer</h3>
+                      <h3 class="text-gray-500 mb-3">Professor</h3>
                       <p class="mb-4">
-                        Chris is part of our front-end team providing amazing
-                        websites.
+                        Professor Kim taught It Convergence Comprehensive Design 3. He supported the project via giving helpful advices for the project for the whole semester.
                       </p>
                       <span class="inline-flex">
                         <a class="text-gray-500">
